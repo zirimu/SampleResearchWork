@@ -1,0 +1,25 @@
+References.
+
+[1]. Tom White, "Hadoop: The Definitive Guide, 2nd Edition: 2010.
+
+---------------------------------------------------------------------------------------------------------------------
+
+Hadoop MapReduce - anatomy of a Hadoop MapReduce Job.
+---------------------------------------------------------------------------------------------------------------------
+
+hadoop uses four formal type parameters to specify input and output of both the map function and reduce function, by implementing the mapper interface for the map function and reducer interface for the reduce function.
+
+
+#The Mapper Interface - takes in (K1,V1,K2,V2) - an input key and an input value and outputs an output key and output value
+
+public class MaxTemperatureMapper extends MapReduceBase
+implements Mapper<LongWritable, Text, Text, IntWritable> {
+
+
+#The Reducer Interface - takes in (K3,V3,K4,V4) - it has to consume the output Key and Output Values og the Mapper function, and outputs #K4 and V4
+
+public class MaxTemperatureReducer extends MapReduceBase
+implements Reducer<Text, IntWritable, Text, IntWritable> {
+
+
+Hadoop  provides a set of its own basic datatypes that are optimised for network serialisation, they can be found in org.apache.hadoop.io . for instance LongWritable and IntWritable [1 pg21]
