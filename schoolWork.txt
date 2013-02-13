@@ -1,0 +1,21 @@
+
+
+PROBLEM STATEMENT.
+
+Over the years, the advent of internet, advances in computing power, storage and networking technologies, have led to the creation of vast amounts of information, and have improved the way we process it.  This information may be generated from digital media, web authoring, scientific instruments, physical simulations, data mining etc.  It becomes a challenge to efficiently store, query, analyze, understand and utilize these immense datasets [1].
+Hadoop MapReduce is a software framework that can be used to easily develop applications that process very large ammounts of data-sets in parallel using clusters of commodity hardware in a reliable manner. It provides abstract design patterns for simplifying development of data-center scale computer systems with high storage and processing demands in a cost effective way. The advantages it offers include fine grained fault tolerence, an architecture that provides a simple yet expressive programming model that can be used to express a wide range of analytical tasks and storage independent design that enables elastic scalability, increased throughput by using data locality whereby the data is processed on the same machine it is stored. 
+
+A developer basically supplys a selected algorithm and selected dataset to the mapReduce interface provided by Hadoop API as a job, the runtime hadoop system then splits the dataset into evenly sized chunks, transforms them into key/value pairs, and then distributes them amongest a series of parallel map tasks for processing, every map task that completes produces intermediate key/value pairs as output, each of which is assigned a reduce task that applys a reduce function and which eventually produces the final out put key/value pairs. In between each map phase and reduce phase is a shuffle step that sorts all map output values with the same key into a single reduce input pair.
+
+Although hadoop has gained popularity as one of the most efficient data-parallel computing platforms currently available, the core framework has got features and areas that need further research in order to improve its overall performance, for instance [3] notes that, the default sort-merge grouping algorithm used within MapReduce is not efficient for certain kinds of analytical tasks such as aggregation and equal-join, they observe that different grouping algorithms can sigificantly improve performance, but the Hadoop core may need to be modified for an efficient grouping algorithm to be implemented. 
+
+[2] Mentions that, the mapReduce scheduling algorithms Fair Scheduler and capacity Scheduler [4], which are responsible for speculative execution of tasks, could be more intelligent when deciding how many tasks to simultaneously assign to each slave, and also which nodes to use for assigning speculative tasks. They [2] further believe that there would be benefits if a simpler scheduler algorithm that attempts to adapt to the differing capabilities of each slave by using an adaptive task assignment algorithm similar to TCP’s slow-start, congestion control and backoff policies, were to be developed.
+ 
+
+REFERENCES.
+
+[1]. Jerry Dean, Sanjay Ghemawat, “MapReduce: Simplified Data Processing on Large Clusters”, OSDI 04: 6th Symposium on Operating Systems Design and Implementation.
+[2]. Matei Zaharia, Andrew Konwinski, "Improving MapReduce Performance in heterogenous Environments", Electrical Engineering and Computer Sciences, University of California at Berkeley, Technical Report No. UCB/EECS-2008-99, page 14, 2008.
+[3]. Dawei Jiang, Beng Chin, Ooi Lei, Shi Sai Wu, “The Performance of MapReduce: An In-depth Study”, School of Computing, National
+University of Singapore, page 2, 2010.
+[4]. Tom White, "Hadoop: The Definitive Guide, 2nd Edition": pages 176-177, 2010.
